@@ -21,226 +21,25 @@ local FaceTable = {}
 local ShareTable = {}
 local FavoriteEmote = ""
 
--- if Config.FavKeybindEnabled then
---     RegisterCommand('emotefav', function() FavKeybind() end, false)
---     RegisterKeyMapping("emotefav", Translate("register_fav_anim"), "keyboard", Config.FavKeybind)
-
---     local doingFavoriteEmote = false
-
---     function FavKeybind()
---         if doingFavoriteEmote == false then
---             doingFavoriteEmote = true
---             if not IsPedSittingInAnyVehicle(PlayerPedId()) then
---                 if FavoriteEmote ~= "" and (not CanUseFavKeyBind or CanUseFavKeyBind()) then
---                     EmoteCommandStart(nil, { FavoriteEmote, 0 })
---                     Wait(500)
---                 end
---             end
---         else
---             EmoteCancel()
---             doingFavoriteEmote = false
---         end
---     end
--- end
-
--- function AddEmoteMenu(menu)
---     local submenu = _menuPool:AddSubMenu(menu, Translate('emotes'), "", true, true)
---     if Config.Search then
---         submenu:AddItem(UIMenuItem.New(Translate('searchemotes'), ""))
---         table.insert(EmoteTable, Translate('searchemotes'))
---     end
---     local dancemenu = _menuPool:AddSubMenu(submenu, Translate('danceemotes'), "", true, true)
---     local animalmenu
---     if Config.AnimalEmotesEnabled then
---         animalmenu = _menuPool:AddSubMenu(submenu, Translate('animalemotes'), "", true, true)
---         table.insert(EmoteTable, Translate('animalemotes'))
---     end
---     local propmenu = _menuPool:AddSubMenu(submenu, Translate('propemotes'), "", true, true)
---     table.insert(EmoteTable, Translate('danceemotes'))
---     table.insert(EmoteTable, Translate('danceemotes'))
-
---     if Config.SharedEmotesEnabled then
---         sharemenu = _menuPool:AddSubMenu(submenu, Translate('shareemotes'),
---             Translate('shareemotesinfo'), true, true)
---         shareddancemenu = _menuPool:AddSubMenu(sharemenu, Translate('sharedanceemotes'), "", true, true)
---         table.insert(ShareTable, 'none')
---         table.insert(EmoteTable, Translate('shareemotes'))
---     end
-
---     -- Temp var to be able to sort every emotes in the fav list
---     local favEmotes = {}
---     if not Config.SqlKeybinding then
---         favmenu = _menuPool:AddSubMenu(submenu, Translate('favoriteemotes'), Translate('favoriteinfo'), true, true)
---         favmenu:AddItem(UIMenuItem.New(Translate('prop2info'), ""))
---         favmenu:AddItem(UIMenuItem.New(Translate('rfavorite'), Translate('rfavorite')))
---         -- Add two elements as offset
---         table.insert(FavEmoteTable, Translate('rfavorite'))
---         table.insert(FavEmoteTable, Translate('rfavorite'))
---         table.insert(EmoteTable, Translate('favoriteemotes'))
---     else
---         table.insert(EmoteTable, "keybinds")
---         submenu:AddItem(UIMenuItem.New(Translate('keybinds'), Translate('keybindsinfo') .. " /emotebind [~y~num4-9~w~] [~g~emotename~w~]"))
---     end
-
---     for a, b in PairsByKeys(RP.Emotes) do
---         local x, y, z = table.unpack(b)
---         submenu:AddItem(UIMenuItem.New(z, "/e (" .. a .. ")"))
---         table.insert(EmoteTable, a)
---         if not Config.SqlKeybinding then
---             favEmotes[a] = z
---         end
---     end
-
---     for a, b in PairsByKeys(RP.Dances) do
---         local x, y, z = table.unpack(b)
---         dancemenu:AddItem(UIMenuItem.New(z, "/e (" .. a .. ")"))
---         if Config.SharedEmotesEnabled then
---             shareddancemenu:AddItem(UIMenuItem.New(z, "/nearby (" .. a .. ")"))
---         end
---         table.insert(DanceTable, a)
---         if not Config.SqlKeybinding then
---             favEmotes[a] = z
---         end
---     end
-
---     if Config.AnimalEmotesEnabled then
---         for a, b in PairsByKeys(RP.AnimalEmotes) do
---             local x, y, z = table.unpack(b)
---             animalmenu:AddItem(UIMenuItem.New(z, "/e (" .. a .. ")"))
---             table.insert(AnimalTable, a)
---             if not Config.SqlKeybinding then
---                 favEmotes[a] = z
---             end
---         end
---     end
-
---     if Config.SharedEmotesEnabled then
---         for a, b in PairsByKeys(RP.Shared) do
---             local x, y, z, otheremotename = table.unpack(b)
---             local shareitem = UIMenuItem.New(z, "/nearby (~g~" .. a .. "~w~)" .. (otheremotename and " " .. Translate('makenearby') .. " (~y~" .. otheremotename .. "~w~)" or ""))
---             sharemenu:AddItem(shareitem)
---             table.insert(ShareTable, a)
---         end
---     end
-
---     for a, b in PairsByKeys(RP.PropEmotes) do
---         local x, y, z = table.unpack(b)
---         local propitem = b.AnimationOptions.PropTextureVariations and
---             UIMenuListItem.New(z, b.AnimationOptions.PropTextureVariations, 1, "/e (" .. a .. ")") or
---             UIMenuItem.New(z, "/e (" .. a .. ")")
-
---         propmenu:AddItem(propitem)
-
---         table.insert(PropETable, a)
---         if not Config.SqlKeybinding then
---             favEmotes[a] = z
---         end
---     end
-
---     if not Config.SqlKeybinding then
---         -- Add the emotes to the fav menu
---         for emoteName, emoteLabel in PairsByKeys(favEmotes) do
---             favmenu:AddItem(UIMenuItem.New(emoteLabel, Translate('set') .. emoteLabel .. Translate('setboundemote')))
---             table.insert(FavEmoteTable, emoteName)
---         end
-
---         favmenu.OnItemSelect = function(sender, item, index)
---             if FavEmoteTable[index] == Translate('rfavorite') then
---                 FavoriteEmote = ""
---                 SimpleNotify(Translate('rfavorite'))
---                 return
---             end
---             if Config.FavKeybindEnabled then
---                 FavoriteEmote = FavEmoteTable[index]
---                 SimpleNotify("~o~" .. FirstToUpper(FavoriteEmote) .. Translate('newsetemote'))
---             end
---         end
---     end
---     favEmotes = nil
-
---     -- Ped Emote on Change Index
-
---     dancemenu.OnIndexChange = function(menu, newindex)
---         ClearPedTaskPreview()
---         EmoteMenuStartClone(DanceTable[newindex], "dances")
---     end
-
---     propmenu.OnIndexChange = function(menu, newindex)
---         ClearPedTaskPreview()
---         EmoteMenuStartClone(PropETable[newindex], "props")
---     end
-
---     submenu.OnIndexChange = function(menu, newindex)
---         if newindex > 6 then
---             ClearPedTaskPreview()
---             EmoteMenuStartClone(EmoteTable[newindex], "emotes")
---         end
---     end
-
---     dancemenu.OnMenuClose = function(menu)
---         ClearPedTaskPreview()
---     end
-
---     --------
-
-
---     dancemenu.OnItemSelect = function(sender, item, index)
---         EmoteMenuStart(DanceTable[index], "dances")
---     end
-
---     if Config.AnimalEmotesEnabled then
---         animalmenu.OnItemSelect = function(sender, item, index)
---             EmoteMenuStart(AnimalTable[index], "animals")
---         end
---     end
-
---     if Config.SharedEmotesEnabled then
---         sharemenu.OnItemSelect = function(sender, item, index)
---             if ShareTable[index] ~= 'none' then
---                 local target, distance = GetClosestPlayer()
---                 if (distance ~= -1 and distance < 3) then
---                     TriggerServerEvent("ServerEmoteRequest", GetPlayerServerId(target), ShareTable[index])
---                     SimpleNotify(Translate('sentrequestto') .. GetPlayerName(target))
---                 else
---                     SimpleNotify(Translate('nobodyclose'))
---                 end
---             end
---         end
-
---         shareddancemenu.OnItemSelect = function(sender, item, index)
---             local target, distance = GetClosestPlayer()
---             if (distance ~= -1 and distance < 3) then
---                 TriggerServerEvent("ServerEmoteRequest", GetPlayerServerId(target), DanceTable[index], 'Dances')
---                 SimpleNotify(Translate('sentrequestto') .. GetPlayerName(target))
---             else
---                 SimpleNotify(Translate('nobodyclose'))
---             end
---         end
---     end
-
---     propmenu.OnItemSelect = function(sender, item, index)
---         EmoteMenuStart(PropETable[index], "props")
---     end
-
---    propmenu.OnListSelect = function(menu, item, itemIndex, listIndex)
---         EmoteMenuStart(PropETable[itemIndex], "props", item:IndexToItem(listIndex).Value)
---     end
-
---     submenu.OnItemSelect = function(sender, item, index)
---         if Config.Search and EmoteTable[index] == Translate('searchemotes') then
---             EmoteMenuSearch(submenu)
---         elseif EmoteTable[index] ~= Translate('favoriteemotes') then
---             EmoteMenuStart(EmoteTable[index], "emotes")
---         end
---     end
-
---     submenu.OnMenuClose = function(menu)
---         if not isSearching then
---             ClosePedMenu()
---         end
---     end
-
--- end
+if Config.FavKeybindEnabled then
+    RegisterCommand('emotefav', function() FavKeybind() end, false)
+    RegisterKeyMapping("emotefav", Translate("register_fav_anim"), "keyboard", Config.FavKeybind)
+    local doingFavoriteEmote = false
+    function FavKeybind()
+        if doingFavoriteEmote == false then
+            doingFavoriteEmote = true
+            if not IsPedSittingInAnyVehicle(PlayerPedId()) then
+                if FavoriteEmote ~= "" and (not CanUseFavKeyBind or CanUseFavKeyBind()) then
+                    EmoteCommandStart(nil, { FavoriteEmote, 0 })
+                    Wait(500)
+                end
+            end
+        else
+            EmoteCancel()
+            doingFavoriteEmote = false
+        end
+    end
+end
 
 function AddEmoteMenu(menu)
     local submenu = UIMenu.New(Translate('emotes'), "", true, true)
@@ -311,7 +110,7 @@ function AddEmoteMenu(menu)
         table.insert(EmoteTable, Translate('favoriteemotes'))
     else
         table.insert(EmoteTable, "keybinds")
-        submenu:AddItem(UIMenuItem.new(Translate('keybinds'),
+        submenu:AddItem(UIMenuItem.New(Translate('keybinds'),
             Translate('keybindsinfo') .. " /emotebind [~y~num4-9~w~] [~g~emotename~w~]"))
     end
     for a, b in PairsByKeys(RP.Emotes) do
@@ -440,11 +239,18 @@ function AddEmoteMenu(menu)
             end
         end
     end
-    propmenu.OnItemSelect = function(sender, item, index)
+    propmenu.OnItemSelect = function(menu, item, index)
         EmoteMenuStart(PropETable[index], "props")
     end
-    propmenu.OnListSelect = function(menu, item, itemIndex, listIndex)
-        EmoteMenuStart(PropETable[itemIndex], "props", item:IndexToItem(listIndex).Value)
+    propmenu.OnListSelect = function(menu, item, newindex)
+        local realIndex = nil
+        for i = 1, #menu.Items do
+            if menu.Items[i] == item then
+                realIndex = i
+                break
+            end
+        end
+        EmoteMenuStart(PropETable[realIndex], "props", newindex-1)
     end
     submenu.OnItemSelect = function(sender, item, index)
         if Config.Search and EmoteTable[index] == Translate('searchemotes') then
@@ -482,8 +288,7 @@ if Config.Search then
             for k, v in pairs(RP) do
                 if not ignoredCategories[k] then
                     for a, b in pairs(v) do
-                        if string.find(string.lower(a), string.lower(input)) or
-                            (b[3] ~= nil and string.find(string.lower(b[3]), string.lower(input))) then
+                        if string.find(string.lower(a), string.lower(input)) or (b[3] ~= nil and string.find(string.lower(b[3]), string.lower(input))) then
                             table.insert(results, {table = k, name = a, data = b})
                         end
                     end
@@ -500,18 +305,18 @@ if Config.Search then
                 end
 
                 if Config.SharedEmotesEnabled then
-                    sharedDanceMenu = UIMenu.New(Translate('sharedanceemotes'), "")
+                    sharedDanceMenu = UIMenu.New(Translate('sharedanceemotes'), "", true, true)
                 end
 
                 table.sort(results, function(a, b) return a.name < b.name end)
-                for _, v in pairs(results) do
+                for k, v in pairs(results) do
                     local desc = ""
                     if v.table == "Shared" then
                         local otheremotename = v.data[4]
                         if otheremotename == nil then
                            desc = "/nearby (~g~" .. v.name .. "~w~)"
                         else
-                            desc = "/nearby (~g~" .. v.name .. "~w~) " .. Translate('makenearby') .. " (~y~" .. otheremotename .. "~w~)"
+                           desc = "/nearby (~g~" .. v.name .. "~w~) " .. Translate('makenearby') .. " (~y~" .. otheremotename .. "~w~)"
                         end
                     else
                         desc = "/e (" .. v.name .. ")" .. (favEnabled and "\n" .. Translate('searchshifttofav') or "")
@@ -532,6 +337,7 @@ if Config.Search then
                     table.insert(results, 1, Translate('rfavorite'))
                 end
 
+
                 searchMenu.OnMenuChanged = function(menu, newmenu, forward)
                     isSearching = false
                     ShowPedMenu()
@@ -549,6 +355,7 @@ if Config.Search then
                         EmoteMenuStartClone(data.name, "animals")
                     end
                 end
+
 
                 searchMenu.OnItemSelect = function(sender, item, index)
                     local data = results[index]
@@ -582,48 +389,55 @@ if Config.Search then
                             SimpleNotify(Translate('nobodyclose'))
                         end
                     end
+                end
 
-                    searchMenu.OnListSelect = function(menu, item, itemIndex, listIndex)
-                        EmoteMenuStart(results[itemIndex].name, "props", item:IndexToItem(listIndex).Value)
-                    end
-
-                    if Config.SharedEmotesEnabled then
-                        if #sharedDanceMenu.Items > 0 then
-                            table.insert(results, (favEnabled and 2 or 1), Translate('sharedanceemotes'))
-                            sharedDanceMenu.OnItemSelect = function(sender, item, index)
-                                if not LocalPlayer.state.canEmote then return end
-                                local data = results[index]
-                                local target, distance = GetClosestPlayer()
-                                if (distance ~= -1 and distance < 3) then
-                                    TriggerServerEvent("ServerEmoteRequest", GetPlayerServerId(target), data.name, 'Dances')
-                                    SimpleNotify(Translate('sentrequestto') .. GetPlayerName(target))
-                                else
-                                    SimpleNotify(Translate('nobodyclose'))
-                                end
-                            end
-                        else
-                            sharedDanceMenu:Clear()
-                            searchMenu:RemoveItemAt((favEnabled and 2 or 1))
+                searchMenu.OnListSelect = function(menu, item, newindex)
+                    for i = 1, #menu.Items do
+                        if menu.Items[i] == item then
+                            realIndex = i
+                            break
                         end
+                    end
+                    EmoteMenuStart(results[realIndex].name, "props", newindex-1)
+                end
+
+                if Config.SharedEmotesEnabled then
+                    if #sharedDanceMenu.Items > 0 then
+                        table.insert(results, (favEnabled and 2 or 1), Translate('sharedanceemotes'))
+                        sharedDanceMenu.OnItemSelect = function(sender, item, index)
+                            if not LocalPlayer.state.canEmote then return end
+
+                            local data = results[index]
+                            local target, distance = GetClosestPlayer()
+                            if (distance ~= -1 and distance < 3) then
+                                TriggerServerEvent("ServerEmoteRequest", GetPlayerServerId(target), data.name, 'Dances')
+                                SimpleNotify(Translate('sentrequestto') .. GetPlayerName(target))
+                            else
+                                SimpleNotify(Translate('nobodyclose'))
+                            end
+                        end
+                    else
+                        sharedDanceMenu:Clear()
+                        --searchMenu:RemoveItemAt((favEnabled and 2 or 1))
                     end
                 end
 
                 searchMenu.OnMenuClose = function()
-                    --searchMenu:Clear()
-                    lastMenu:RemoveItemAt(#lastMenu.Items)
-                    ClosePedMenu()
+                    MenuHandler:CloseAndClearHistory()
                     results = {}
+                    ClosePedMenu()
                 end
 
                 MenuHandler:CloseAndClearHistory()
                 searchMenu:Visible(true)
                 ShowPedMenu()
             else
-                SimpleNotify(string.format(Translate('searchnoresult') .. ' ~r~%s~w~', input))
+                SimpleNotify(string.format(Translate('searchnoresult')..' ~r~%s~w~', input))
             end
         end
     end
 end
+
 
 function AddCancelEmote(menu)
     local newitem = UIMenuItem.New(Translate('cancelemote'), Translate('cancelemoteinfo'))
