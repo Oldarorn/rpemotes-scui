@@ -10,6 +10,9 @@ This project has **no revolutionary ambitions** and does not intend to **replace
 - Better support for **ultrawide screens**.
 - No other major modifications.
 
+## 📂 Missing Stream Folder
+The `stream` folder is absent from this repository. Even though this is a fork, I do not have personal authorization to distribute the files included in it.
+
 ## 📜 Acknowledgments
 A big thank you to the creators of **RPEmotes** and **RPEmotes Reborn** for their great work, and to **Manups4e** for [ScaleformUI](https://github.com/Manups4e/ScaleformUI).
 
@@ -31,9 +34,12 @@ Ce projet n'a **aucune vocation révolutionnaire** ni l'intention de **remplacer
 - Meilleure prise en charge des **écrans ultrawide**.
 - Aucune autre modification majeure.
 
+- ## 📂 Dossier Stream Absent
+Le dossier `stream` est absent de ce repo. Bien que ce soit un fork, je n'ai pas personnellement l'autorisation d'exploiter les fichiers inclus dedans.
+
 ## 📜 Remerciements
 Un grand merci aux créateurs de **RPEmotes** et **RPEmotes Reborn** pour leur excellent travail et à **Manups4e** pour [ScaleformUI](https://github.com/Manups4e/ScaleformUI).
 
 ---
 
-**⚠️ Disclaimer** : Ce projet est une simple adaptation et n'est pas destiné à surpasser ou remplacer les versions existantes de RPEmotes. Si vous souhaitez utiliser la version originale, référez-vous aux projets de **TayMcKenzie** et **Noor Nahas**.
+**⚠️ Disclaimer** : Ce projet est une simple adaptation et n'est pas destiné à surpasser ou remplacer les versions existantes de RPEmotes. Si vous souhaitez utiliser la version originale, référez-vous aux projets de **TayMcKenzieNZ** et **Noor Nahas**.
