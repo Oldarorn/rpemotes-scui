@@ -1,9 +1,9 @@
 # RPEmotes Reborn - ScaleformUI Edition
 
-This repository is a **poorly copied fork** of [RPEmotes Reborn](https://github.com/NoorNahas/RPEmotes), adapted to work with [ScaleformUI](https://github.com/Manups4e/ScaleformUI) instead of NativeUI. The primary goal of this modification is to improve compatibility with **ultrawide screens**, which sometimes have issues with NativeUI.
+This repository is a **poorly copied fork** of [RPEmotes Reborn](https://github.com/alberttheprince/rpemotes-reborn), adapted to work with [ScaleformUI](https://github.com/Manups4e/ScaleformUI) instead of NativeUI. The primary goal of this modification is to improve compatibility with **ultrawide screens**, which sometimes have issues with NativeUI.
 
 ## 🚀 Why this fork?
-This project has **no revolutionary ambitions** and does not intend to **replace RPEmotes**, whether it be the original version by [**TayMcKenzieNZ**](https://buymeacoffee.com/taymckenzienz/e/235726) or the **Reborn** version by [**Noor Nahas**](https://github.com/alberttheprince/rpemotes-reborn). It is simply an **alternative** that leverages a different menu engine for players experiencing issues with NativeUI.
+This project has **no revolutionary ambitions** and does not intend to **replace RPEmotes**, whether it be the original version by [**TayMcKenzieNZ**](https://ko-fi.com/taymckenzienz) or the **Reborn** version by [**Noor Nahas**](https://github.com/alberttheprince/rpemotes-reborn). It is simply an **alternative** that leverages a different menu engine for players experiencing issues with NativeUI.
 
 ## 📌 What's different?
 - Replaces **NativeUI** with **ScaleformUI**.
@@ -27,7 +27,7 @@ A big thank you to the creators of **RPEmotes** and **RPEmotes Reborn** for thei
 Ce repo est un **fork mal copié** de [RPEmotes Reborn](https://github.com/NoorNahas/RPEmotes) mais adapté pour fonctionner avec [ScaleformUI](https://github.com/Manups4e/ScaleformUI) au lieu de NativeUI. L'objectif principal de cette modification est d'améliorer la compatibilité avec les écrans **ultrawide**, qui posent parfois problème avec NativeUI.
 
 ## 🚀 Pourquoi ce fork ?
-Ce projet n'a **aucune vocation révolutionnaire** ni l'intention de **remplacer RPEmotes**, que ce soit la version originale de [**TayMcKenzieNZ**](https://buymeacoffee.com/taymckenzienz/e/235726) ou celle de [**Noor Nahas**](https://github.com/alberttheprince/rpemotes-reborn). Il s'agit simplement d'une **alternative** permettant d'exploiter un autre moteur de menu pour les joueurs qui rencontrent des problèmes avec NativeUI.
+Ce projet n'a **aucune vocation révolutionnaire** ni l'intention de **remplacer RPEmotes**, que ce soit la version originale de [**TayMcKenzieNZ**](https://ko-fi.com/taymckenzienz) ou celle de [**Noor Nahas**](https://github.com/alberttheprince/rpemotes-reborn). Il s'agit simplement d'une **alternative** permettant d'exploiter un autre moteur de menu pour les joueurs qui rencontrent des problèmes avec NativeUI.
 
 ## 📌 Ce qui change
 - Remplacement de **NativeUI** par **ScaleformUI**.
